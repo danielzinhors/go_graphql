@@ -33,6 +33,7 @@ func (c *Category) FindAll() ([]Category, error) {
 		return nil, err
 	}
 	categories := []Category{}
+	defer rows.Close()
 	for rows.Next() {
 		var id, name, description string
 		if err := rows.Scan(&id, &name, &description); err != nil {
